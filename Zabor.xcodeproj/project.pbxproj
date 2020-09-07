@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		064DF175F54DD5E9C19D1CF2 /* Pods_Zabor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A7DB4DD7AD5E3768ABF4B3 /* Pods_Zabor.framework */; };
 		63A779832505EFD1008260BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779822505EFD1008260BB /* AppDelegate.swift */; };
 		63A779852505EFD1008260BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779842505EFD1008260BB /* SceneDelegate.swift */; };
 		63A779872505EFD1008260BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779862505EFD1008260BB /* ViewController.swift */; };
@@ -14,6 +15,7 @@
 		63A7798D2505EFD1008260BB /* Zabor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63A7798B2505EFD1008260BB /* Zabor.xcdatamodeld */; };
 		63A7798F2505EFD4008260BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A7798E2505EFD4008260BB /* Assets.xcassets */; };
 		63A779922505EFD4008260BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A779902505EFD4008260BB /* LaunchScreen.storyboard */; };
+		63A7799A2506113E008260BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63A779992506113E008260BB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		63A7798E2505EFD4008260BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63A779912505EFD4008260BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63A779932505EFD4008260BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63A779992506113E008260BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B6DA4E6FEB7FDEA2CF02CF04 /* Pods-Zabor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zabor.debug.xcconfig"; path = "Target Support Files/Pods-Zabor/Pods-Zabor.debug.xcconfig"; sourceTree = "<group>"; };
+		D7A7DB4DD7AD5E3768ABF4B3 /* Pods_Zabor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zabor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEF67B9F4ED28525CE6FBBA9 /* Pods-Zabor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zabor.release.xcconfig"; path = "Target Support Files/Pods-Zabor/Pods-Zabor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +39,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				064DF175F54DD5E9C19D1CF2 /* Pods_Zabor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C08B3B8F1493C6DA1987452 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6DA4E6FEB7FDEA2CF02CF04 /* Pods-Zabor.debug.xcconfig */,
+				DEF67B9F4ED28525CE6FBBA9 /* Pods-Zabor.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		63A779762505EFD1008260BB = {
 			isa = PBXGroup;
 			children = (
 				63A779812505EFD1008260BB /* Zabor */,
 				63A779802505EFD1008260BB /* Products */,
+				4C08B3B8F1493C6DA1987452 /* Pods */,
+				73665CAE5CF3D25DDBCED49B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,8 +85,17 @@
 				63A779902505EFD4008260BB /* LaunchScreen.storyboard */,
 				63A779932505EFD4008260BB /* Info.plist */,
 				63A7798B2505EFD1008260BB /* Zabor.xcdatamodeld */,
+				63A779992506113E008260BB /* GoogleService-Info.plist */,
 			);
 			path = Zabor;
+			sourceTree = "<group>";
+		};
+		73665CAE5CF3D25DDBCED49B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D7A7DB4DD7AD5E3768ABF4B3 /* Pods_Zabor.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +105,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63A779962505EFD4008260BB /* Build configuration list for PBXNativeTarget "Zabor" */;
 			buildPhases = (
+				70D9FAF188B33D7B74434043 /* [CP] Check Pods Manifest.lock */,
 				63A7797B2505EFD1008260BB /* Sources */,
 				63A7797C2505EFD1008260BB /* Frameworks */,
 				63A7797D2505EFD1008260BB /* Resources */,
+				9B52BF9FF62D6AD9644E67C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,12 +159,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				63A779922505EFD4008260BB /* LaunchScreen.storyboard in Resources */,
+				63A7799A2506113E008260BB /* GoogleService-Info.plist in Resources */,
 				63A7798F2505EFD4008260BB /* Assets.xcassets in Resources */,
 				63A7798A2505EFD1008260BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		70D9FAF188B33D7B74434043 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Zabor-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B52BF9FF62D6AD9644E67C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zabor/Pods-Zabor-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Zabor/Pods-Zabor-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Zabor/Pods-Zabor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63A7797B2505EFD1008260BB /* Sources */ = {
@@ -286,6 +359,7 @@
 		};
 		63A779972505EFD4008260BB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6DA4E6FEB7FDEA2CF02CF04 /* Pods-Zabor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -304,6 +378,7 @@
 		};
 		63A779982505EFD4008260BB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEF67B9F4ED28525CE6FBBA9 /* Pods-Zabor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
