@@ -21,6 +21,10 @@ class ViewController: UIViewController {
 
     // MARK: - IBAction
 
+    @IBAction func closeSeque(_ sender: UIStoryboardSegue) {
+        
+    }
+    
     @IBAction func customerTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let authorizationVC = storyboard.instantiateViewController(withIdentifier: "AuthorizationViewController") as! AuthorizationViewController

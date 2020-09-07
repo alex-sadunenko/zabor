@@ -12,19 +12,22 @@ class WorkViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        configureNavigation()
+        
     }
     
+    func configureNavigation() {
+        //navigationController?.navigationBar.barTintColor = .darkGray
+        //navigationController?.navigationBar.barStyle = .default
+        navigationItem.title = "Подрядчик"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.badge.xmark"), style: .plain, target: self, action: #selector(dismissToMainMenu))
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+    
+    @objc func dismissToMainMenu() {
+        performSegue(withIdentifier: "closeSeque", sender: self)
+        print("dismissToMainMenu")
+    }
+    
 }

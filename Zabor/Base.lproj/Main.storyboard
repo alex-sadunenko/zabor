@@ -143,6 +143,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GPo-eg-ywi"/>
                     </view>
+                    <connections>
+                        <outlet property="phoneNumber" destination="uVP-tZ-wik" id="Dea-qA-7fY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5m8-Sn-aef" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -218,6 +221,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lUd-ea-RWQ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="4F0-cR-IEG"/>
                     <connections>
                         <outlet property="checkCodeButton" destination="JbW-qA-MO5" id="r83-oW-ojC"/>
                         <outlet property="codeTextView" destination="H46-3G-kQq" id="vtQ-aB-4fG"/>
@@ -225,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZxG-fa-HeD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1475.3623188405797" y="100.44642857142857"/>
+            <point key="canvasLocation" x="1461" y="100"/>
         </scene>
         <!--Work View Controller-->
         <scene sceneID="p3l-cQ-t7T">
@@ -234,13 +238,18 @@
                     <view key="view" contentMode="scaleToFill" id="f3G-cs-YDh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Elp-Zv-T23"/>
                     </view>
+                    <navigationItem key="navigationItem" id="sPh-yX-cvD"/>
+                    <connections>
+                        <segue destination="pa9-59-QZD" kind="unwind" identifier="closeSeque" unwindAction="closeSeque:" id="xxH-21-KKX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pQ2-xn-yU0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="pa9-59-QZD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2143" y="100"/>
+            <point key="canvasLocation" x="2107" y="100"/>
         </scene>
     </scenes>
     <resources>
