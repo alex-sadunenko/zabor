@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,9 @@
 		63A7798F2505EFD4008260BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63A7798E2505EFD4008260BB /* Assets.xcassets */; };
 		63A779922505EFD4008260BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A779902505EFD4008260BB /* LaunchScreen.storyboard */; };
 		63A7799A2506113E008260BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63A779992506113E008260BB /* GoogleService-Info.plist */; };
+		63A7799C25061AF8008260BB /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7799B25061AF8008260BB /* AuthorizationViewController.swift */; };
+		63A7799F2506308A008260BB /* CodeValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A7799E2506308A008260BB /* CodeValidationViewController.swift */; };
+		63A779A125063DBC008260BB /* WorkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779A025063DBC008260BB /* WorkViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,9 @@
 		63A779912505EFD4008260BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63A779932505EFD4008260BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63A779992506113E008260BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		63A7799B25061AF8008260BB /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		63A7799E2506308A008260BB /* CodeValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeValidationViewController.swift; sourceTree = "<group>"; };
+		63A779A025063DBC008260BB /* WorkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkViewController.swift; sourceTree = "<group>"; };
 		B6DA4E6FEB7FDEA2CF02CF04 /* Pods-Zabor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zabor.debug.xcconfig"; path = "Target Support Files/Pods-Zabor/Pods-Zabor.debug.xcconfig"; sourceTree = "<group>"; };
 		D7A7DB4DD7AD5E3768ABF4B3 /* Pods_Zabor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zabor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEF67B9F4ED28525CE6FBBA9 /* Pods-Zabor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zabor.release.xcconfig"; path = "Target Support Files/Pods-Zabor/Pods-Zabor.release.xcconfig"; sourceTree = "<group>"; };
@@ -52,7 +58,6 @@
 				B6DA4E6FEB7FDEA2CF02CF04 /* Pods-Zabor.debug.xcconfig */,
 				DEF67B9F4ED28525CE6FBBA9 /* Pods-Zabor.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -79,7 +84,7 @@
 			children = (
 				63A779822505EFD1008260BB /* AppDelegate.swift */,
 				63A779842505EFD1008260BB /* SceneDelegate.swift */,
-				63A779862505EFD1008260BB /* ViewController.swift */,
+				63A7799D25061B05008260BB /* View */,
 				63A779882505EFD1008260BB /* Main.storyboard */,
 				63A7798E2505EFD4008260BB /* Assets.xcassets */,
 				63A779902505EFD4008260BB /* LaunchScreen.storyboard */,
@@ -88,6 +93,17 @@
 				63A779992506113E008260BB /* GoogleService-Info.plist */,
 			);
 			path = Zabor;
+			sourceTree = "<group>";
+		};
+		63A7799D25061B05008260BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63A779862505EFD1008260BB /* ViewController.swift */,
+				63A7799B25061AF8008260BB /* AuthorizationViewController.swift */,
+				63A7799E2506308A008260BB /* CodeValidationViewController.swift */,
+				63A779A025063DBC008260BB /* WorkViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		73665CAE5CF3D25DDBCED49B /* Frameworks */ = {
@@ -216,7 +232,10 @@
 			files = (
 				63A7798D2505EFD1008260BB /* Zabor.xcdatamodeld in Sources */,
 				63A779872505EFD1008260BB /* ViewController.swift in Sources */,
+				63A7799F2506308A008260BB /* CodeValidationViewController.swift in Sources */,
 				63A779832505EFD1008260BB /* AppDelegate.swift in Sources */,
+				63A7799C25061AF8008260BB /* AuthorizationViewController.swift in Sources */,
+				63A779A125063DBC008260BB /* WorkViewController.swift in Sources */,
 				63A779852505EFD1008260BB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
