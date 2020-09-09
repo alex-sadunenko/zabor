@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 import CoreLocation
+import FirebaseAuth
+import FirebaseDatabase
 
 class NewObjectViewController: UIViewController, UINavigationControllerDelegate {
 
@@ -20,6 +22,10 @@ class NewObjectViewController: UIViewController, UINavigationControllerDelegate 
     var locationManager: CLLocationManager!
     var longitude: Double?
     var latitude: Double?
+    
+    var user: FUser!
+    var ref: DatabaseReference!
+    var date: String!
     
     //MARK: - IBOutlet
     @IBOutlet weak var infoObjectTextView: UITextView!
@@ -34,10 +40,24 @@ class NewObjectViewController: UIViewController, UINavigationControllerDelegate 
     @IBOutlet weak var buttonFours: UIButton!
     @IBOutlet weak var latitudeLabel: UILabel!
     @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet weak var dateInstallation: UILabel! {
+        didSet {
+            let formatter = DateFormatter()
+            //formatter.dateStyle = .full
+            //formatter.locale = Locale(identifier: "ru")
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            dateInstallation.text = formatter.string(from: Date() as Date)
+            formatter.dateFormat = "yyyyMMddHHmmss"
+            date = formatter.string(from: Date() as Date)}
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = FUser(user: currentUser)
+        ref = Database.database().reference(withPath: "products")
+        
         setupVideo()
         startRunning()
     }
@@ -47,7 +67,14 @@ class NewObjectViewController: UIViewController, UINavigationControllerDelegate 
         numberImageTapped = sender.tag
         openCamera()
     }
-
+    @IBAction func cancelTapped(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
+    }
+    @IBAction func saveTapped(_ sender: UIButton) {
+        saveData()
+    }
+    
 }
 
 //MARK: - Location
@@ -83,7 +110,6 @@ extension NewObjectViewController: CLLocationManagerDelegate {
         print("Error \(error)")
         getСoordinates()
     }
-    
 }
 
 //MARK: - Scan QR
@@ -131,7 +157,6 @@ extension NewObjectViewController: AVCaptureMetadataOutputObjectsDelegate {
                 alert.addAction(cancelAction)
                 
                 present(alert, animated: true)
-                
             }
         }
     }
@@ -180,51 +205,20 @@ extension NewObjectViewController: UIImagePickerControllerDelegate {
         picker.dismiss(animated: true, completion: nil)
         getСoordinates()
     }
-    
 }
 
-//extension NewObjectViewController: UICollectionViewDelegate {
-//
-//}
-//
-//extension NewObjectViewController: UICollectionViewDataSource {
-//
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 4
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-//        cell.backgroundColor = .black
-//        return cell
-//    }
-//}
-//
-//extension NewObjectViewController: UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let itemsPerRow: CGFloat = 2
-//        let paddingWidth = 10 * (itemsPerRow - 1)
-//        let availableWidth = collectionView.frame.width - paddingWidth
-//        let widthPerItem = availableWidth / itemsPerRow
-//        //collectionView.frame.size.height = collectionView.frame.size.width
-//
-//        return CGSize(width: widthPerItem, height: widthPerItem)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10
-//    }
-//}
+//MARK: - Firebase Save Data
+extension NewObjectViewController {
+    
+    func saveData() {
+        let product = Product(userID: user.uid, description: infoObjectTextView.text, date: dateInstallation.text!, latitude: latitude!, longitude: longitude!, isCheck: false, ref: nil)
+        let taskRef = ref.child(date)
+        taskRef.setValue(["userID": product.userID,
+        "description": product.description,
+        "date": product.date,
+        "latitude": product.latitude,
+        "longitude": product.longitude,
+        "isCheck": product.isCheck])
+    }
+}
+

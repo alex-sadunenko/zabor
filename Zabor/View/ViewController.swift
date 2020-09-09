@@ -37,7 +37,6 @@ class ViewController: UIViewController {
     }
 
     // MARK: - IBAction
-
     @IBAction func closeSeque(_ sender: UIStoryboardSegue) {
         
     }

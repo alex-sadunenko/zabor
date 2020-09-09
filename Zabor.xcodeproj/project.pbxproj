@@ -11,6 +11,8 @@
 		634B758A2508E34A00045F42 /* NewObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B75892508E34A00045F42 /* NewObjectViewController.swift */; };
 		634B758C2508E44C00045F42 /* ObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B758B2508E44C00045F42 /* ObjectTableViewCell.swift */; };
 		634B758E250903BD00045F42 /* PhotoCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B758D250903BD00045F42 /* PhotoCellCollectionViewCell.swift */; };
+		634B75932509596F00045F42 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B75922509596F00045F42 /* Product.swift */; };
+		634B759525096C6F00045F42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B759425096C6F00045F42 /* User.swift */; };
 		63A779832505EFD1008260BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779822505EFD1008260BB /* AppDelegate.swift */; };
 		63A779852505EFD1008260BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779842505EFD1008260BB /* SceneDelegate.swift */; };
 		63A779872505EFD1008260BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779862505EFD1008260BB /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 		634B75892508E34A00045F42 /* NewObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewObjectViewController.swift; sourceTree = "<group>"; };
 		634B758B2508E44C00045F42 /* ObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewCell.swift; sourceTree = "<group>"; };
 		634B758D250903BD00045F42 /* PhotoCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		634B75922509596F00045F42 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		634B759425096C6F00045F42 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		63A7797F2505EFD1008260BB /* Zabor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zabor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A779822505EFD1008260BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63A779842505EFD1008260BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +71,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		634B7591250958F600045F42 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				634B75922509596F00045F42 /* Product.swift */,
+				634B759425096C6F00045F42 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		63A779762505EFD1008260BB = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +104,7 @@
 				63A779822505EFD1008260BB /* AppDelegate.swift */,
 				63A779842505EFD1008260BB /* SceneDelegate.swift */,
 				63A7799D25061B05008260BB /* View */,
+				634B7591250958F600045F42 /* Model */,
 				63A779882505EFD1008260BB /* Main.storyboard */,
 				63A7798E2505EFD4008260BB /* Assets.xcassets */,
 				63A779902505EFD4008260BB /* LaunchScreen.storyboard */,
@@ -244,8 +258,10 @@
 				63A779872505EFD1008260BB /* ViewController.swift in Sources */,
 				63A7799F2506308A008260BB /* CodeValidationViewController.swift in Sources */,
 				63A779832505EFD1008260BB /* AppDelegate.swift in Sources */,
+				634B75932509596F00045F42 /* Product.swift in Sources */,
 				634B758C2508E44C00045F42 /* ObjectTableViewCell.swift in Sources */,
 				63A7799C25061AF8008260BB /* AuthorizationViewController.swift in Sources */,
+				634B759525096C6F00045F42 /* User.swift in Sources */,
 				63A779A125063DBC008260BB /* WorkViewController.swift in Sources */,
 				63A779852505EFD1008260BB /* SceneDelegate.swift in Sources */,
 				634B758E250903BD00045F42 /* PhotoCellCollectionViewCell.swift in Sources */,

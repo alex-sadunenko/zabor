@@ -33,6 +33,7 @@ class WorkViewController: UIViewController {
         //navigationController?.navigationBar.barStyle = .default
         navigationItem.title = "Подрядчик"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.badge.xmark"), style: .plain, target: self, action: #selector(dismissToMainMenu))
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
     // MARK: - Configure Add Button
