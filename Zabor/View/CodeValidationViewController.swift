@@ -13,6 +13,8 @@ class CodeValidationViewController: UIViewController {
 
     var verificationID: String!
     
+    // MARK: - IBOutlet
+
     @IBOutlet weak var codeTextView: UITextView!
     @IBOutlet weak var checkCodeButton: UIButton!
     
@@ -23,6 +25,8 @@ class CodeValidationViewController: UIViewController {
         codeTextView.becomeFirstResponder()
     }
     
+    // MARK: - IBAction
+
     @IBAction func checkCodeTapped(_ sender: UIButton) {
         guard let code = codeTextView.text else { return }
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
@@ -47,7 +51,6 @@ class CodeValidationViewController: UIViewController {
         self.present(navController, animated: true)
     }
 
-    
     private func setupConfig() {
         checkCodeButton.alpha = 0.5
         checkCodeButton.isEnabled = false

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
@@ -17,6 +18,22 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DispatchQueue.main.async {
+            if Auth.auth().currentUser?.uid != nil {
+                // здесь можно прописать переход на контроллер работы, но для этого надо знать, это заказчик или подрядчик
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let workVC = storyboard.instantiateViewController(withIdentifier: "WorkViewController") as! WorkViewController
+                //workVC.isCustomer = true
+                let navController = UINavigationController(rootViewController: workVC)
+                navController.modalPresentationStyle = .overFullScreen
+                self.present(navController, animated: true)
+            }
+        }
     }
 
     // MARK: - IBAction

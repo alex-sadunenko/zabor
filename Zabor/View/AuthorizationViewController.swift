@@ -13,6 +13,8 @@ class AuthorizationViewController: UIViewController {
 
     var verificationID: String!
     
+    // MARK: - IBOutlet
+
     @IBOutlet weak var phoneNumber: UITextField!
     
     var isCustomer: Bool?
@@ -22,6 +24,8 @@ class AuthorizationViewController: UIViewController {
 
     }
     
+    // MARK: - IBAction
+
     @IBAction func fetchCodeTapped(_ sender: UIButton) {
         guard let phoneNumber = phoneNumber else { return }
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber.text!, uiDelegate: nil) { (data, error) in
