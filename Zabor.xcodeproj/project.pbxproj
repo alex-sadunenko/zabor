@@ -10,6 +10,7 @@
 		064DF175F54DD5E9C19D1CF2 /* Pods_Zabor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A7DB4DD7AD5E3768ABF4B3 /* Pods_Zabor.framework */; };
 		634B758A2508E34A00045F42 /* NewObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B75892508E34A00045F42 /* NewObjectViewController.swift */; };
 		634B758C2508E44C00045F42 /* ObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B758B2508E44C00045F42 /* ObjectTableViewCell.swift */; };
+		634B758E250903BD00045F42 /* PhotoCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B758D250903BD00045F42 /* PhotoCellCollectionViewCell.swift */; };
 		63A779832505EFD1008260BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779822505EFD1008260BB /* AppDelegate.swift */; };
 		63A779852505EFD1008260BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779842505EFD1008260BB /* SceneDelegate.swift */; };
 		63A779872505EFD1008260BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779862505EFD1008260BB /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		634B75892508E34A00045F42 /* NewObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewObjectViewController.swift; sourceTree = "<group>"; };
 		634B758B2508E44C00045F42 /* ObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewCell.swift; sourceTree = "<group>"; };
+		634B758D250903BD00045F42 /* PhotoCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		63A7797F2505EFD1008260BB /* Zabor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zabor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A779822505EFD1008260BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63A779842505EFD1008260BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				63A779A025063DBC008260BB /* WorkViewController.swift */,
 				634B758B2508E44C00045F42 /* ObjectTableViewCell.swift */,
 				634B75892508E34A00045F42 /* NewObjectViewController.swift */,
+				634B758D250903BD00045F42 /* PhotoCellCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				63A7799C25061AF8008260BB /* AuthorizationViewController.swift in Sources */,
 				63A779A125063DBC008260BB /* WorkViewController.swift in Sources */,
 				63A779852505EFD1008260BB /* SceneDelegate.swift in Sources */,
+				634B758E250903BD00045F42 /* PhotoCellCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sadunenko.Zabor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -418,7 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sadunenko.Zabor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

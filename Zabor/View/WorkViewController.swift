@@ -19,12 +19,11 @@ class WorkViewController: UIViewController {
         
         configureNavigation()
         configureAddButton()
-        setupVideo()
         
     }
     
     @IBAction func scanQrCodeTapped(_ sender: UIButton) {
-        startRunning()
+        
     }
     
     // MARK: - Configure Navigation
@@ -54,7 +53,6 @@ class WorkViewController: UIViewController {
         }
         print("dismissToMainMenu")
     }
-    
 }
 
 extension WorkViewController: UITableViewDelegate {
@@ -72,57 +70,5 @@ extension WorkViewController: UITableViewDataSource {
         return cell
     }
     
-    
 }
 
-//MARK: - Scan QR
-
-extension WorkViewController: AVCaptureMetadataOutputObjectsDelegate {
-    
-    func setupVideo() {
-        
-        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else { return }
-        do {
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            session.addInput(input)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-        
-        let output = AVCaptureMetadataOutput()
-        session.addOutput(output)
-        
-        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
-        
-        video = AVCaptureVideoPreviewLayer(session: session)
-        video.frame = view.layer.bounds
-    }
-    
-    func startRunning() {
-        view.layer.addSublayer(video)
-        session.startRunning()
-    }
-
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        guard metadataObjects.count > 0 else { return }
-        if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject {
-            if object.type == AVMetadataObject.ObjectType.qr {
-                
-                let alert = UIAlertController(title: "Объект", message: object.stringValue, preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-                    self.infoObjectTextView.text = object.stringValue
-                    self.view.layer.sublayers?.removeLast()
-                    self.session.stopRunning()
-                }
-                let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
-                
-                alert.addAction(okAction)
-                alert.addAction(cancelAction)
-                
-                present(alert, animated: true)
-                
-            }
-        }
-    }
-}
