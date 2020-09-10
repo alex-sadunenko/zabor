@@ -12,9 +12,9 @@ import FirebaseAuth
 class CodeValidationViewController: UIViewController {
 
     var verificationID: String!
-    
-    // MARK: - IBOutlet
+    let userDefaults = UserDefaults.standard
 
+    // MARK: - IBOutlet
     @IBOutlet weak var codeTextView: UITextView!
     @IBOutlet weak var checkCodeButton: UIButton!
     
@@ -26,7 +26,6 @@ class CodeValidationViewController: UIViewController {
     }
     
     // MARK: - IBAction
-
     @IBAction func checkCodeTapped(_ sender: UIButton) {
         guard let code = codeTextView.text else { return }
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: code)
@@ -37,18 +36,26 @@ class CodeValidationViewController: UIViewController {
                 alertController.addAction(cancel)
                 self.present(alertController, animated: true)
             } else {
-                self.showWorkVC()
+                self.showTargetVC()
             }
         }
     }
     
-    private func showWorkVC() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let workVC = storyboard.instantiateViewController(withIdentifier: "WorkViewController") as! WorkViewController
-        //codeValidationVC.isCustomer = true
-        let navController = UINavigationController(rootViewController: workVC)
-        navController.modalPresentationStyle = .overFullScreen
-        self.present(navController, animated: true)
+    private func showTargetVC() {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+ 
+        let isCustomer = self.userDefaults.bool(forKey: "isCustomer")
+        let isEmployee = self.userDefaults.bool(forKey: "isEmployee")
+        if isCustomer {
+            let tabBarVC = mainStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+            UIApplication.shared.windows.first?.rootViewController = tabBarVC
+        } else if isEmployee {
+            let workVC = mainStoryboard.instantiateViewController(withIdentifier: "WorkViewController") as! WorkViewController
+            var navController = UINavigationController()
+            navController = UINavigationController(rootViewController: workVC)
+            UIApplication.shared.windows.first?.rootViewController = navController
+        }
+        
     }
 
     private func setupConfig() {
@@ -60,8 +67,7 @@ class CodeValidationViewController: UIViewController {
 
 }
 
-//MARK: - UITextViewDelegate
-
+//MARK: - TextView Delegate
 extension CodeValidationViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let currentCharacterCount = textView.text?.count ?? 0

@@ -14,18 +14,14 @@ class AuthorizationViewController: UIViewController {
     var verificationID: String!
     
     // MARK: - IBOutlet
-
     @IBOutlet weak var phoneNumber: UITextField!
-    
-    var isCustomer: Bool?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
     // MARK: - IBAction
-
     @IBAction func fetchCodeTapped(_ sender: UIButton) {
         guard let phoneNumber = phoneNumber else { return }
         PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber.text!, uiDelegate: nil) { (data, error) in
@@ -37,6 +33,7 @@ class AuthorizationViewController: UIViewController {
         }
     }
     
+    // MARK: - Code Validation
     private func showCodeValidationVC(verificationID: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let codeValidationVC = storyboard.instantiateViewController(withIdentifier: "CodeValidationViewController") as! CodeValidationViewController

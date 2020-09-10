@@ -70,7 +70,6 @@ class NewObjectViewController: UIViewController, UINavigationControllerDelegate 
     }
     @IBAction func cancelTapped(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
     }
     @IBAction func saveTapped(_ sender: UIButton) {
         saveData()

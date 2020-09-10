@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--User View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Zabor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserViewController" id="BYZ-38-t0r" customClass="UserViewController" customModule="Zabor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qhj-BS-ihR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -36,7 +36,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="customerTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dPa-46-Cpg"/>
+                                            <action selector="customerTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aa2-b8-HfK"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Hh-7f-grK">
@@ -47,7 +47,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="employeeTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qiw-Lt-tZe"/>
+                                            <action selector="employeeTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2qM-k7-Uap"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -359,6 +359,58 @@
             </objects>
             <point key="canvasLocation" x="2147.826086956522" y="97.767857142857139"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="F1i-5a-MXh">
+            <objects>
+                <viewController storyboardIdentifier="CustomerViewController" modalPresentationStyle="overFullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nU5-zP-5qr" customClass="CustomerViewController" customModule="Zabor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="t3g-NK-5iX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="iEP-ji-dLI"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="0SB-dh-l1H"/>
+                    <navigationItem key="navigationItem" id="8mn-RB-w3m"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xrR-nW-StY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1461" y="1491"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="czM-s5-hBF">
+            <objects>
+                <viewController storyboardIdentifier="ReportViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yrn-MO-v7y" customClass="ReportViewController" customModule="Zabor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v75-nH-w3E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Fwk-xZ-NBt"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="4xY-Wc-p5p"/>
+                    <navigationItem key="navigationItem" id="E1A-QE-SPR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dq3-sI-ghw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2148" y="1491"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="xT2-1B-L5w">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="10n-cb-K0k" customClass="MapViewController" customModule="Zabor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1DA-MY-nd5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Nmu-R1-UN5"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="W5y-bI-mCz"/>
+                    <navigationItem key="navigationItem" id="2wl-QX-G0d"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qx2-Xw-EmT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2848" y="1491"/>
+        </scene>
         <!--New Object View Controller-->
         <scene sceneID="kD9-jM-9ks">
             <objects>
@@ -561,7 +613,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="customerTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="e5T-nn-Oyk"/>
                                             <action selector="saveTapped:" destination="bOS-t1-uVJ" eventType="touchUpInside" id="Wju-FD-kGx"/>
                                         </connections>
                                     </button>
@@ -574,7 +625,6 @@
                                         </state>
                                         <connections>
                                             <action selector="cancelTapped:" destination="bOS-t1-uVJ" eventType="touchUpInside" id="tgC-uo-4Hc"/>
-                                            <action selector="employeeTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GVa-h3-Sdd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -614,6 +664,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZY-6S-SKN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2847.826086956522" y="97.767857142857139"/>
+        </scene>
+        <!--Tab Bar View Controller-->
+        <scene sceneID="Nhj-YQ-5ZA">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Kf-gN-5Ix" customClass="TabBarViewController" customModule="Zabor" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5AT-HF-ZnR">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="nU5-zP-5qr" kind="relationship" relationship="viewControllers" id="Vlb-xN-9hn"/>
+                        <segue destination="Yrn-MO-v7y" kind="relationship" relationship="viewControllers" id="7jS-Ef-Jnk"/>
+                        <segue destination="10n-cb-K0k" kind="relationship" relationship="viewControllers" id="8WK-o5-yj5"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wBt-Jh-NHg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2148" y="758"/>
         </scene>
     </scenes>
     <resources>

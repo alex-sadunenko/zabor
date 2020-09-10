@@ -16,7 +16,9 @@ class WorkViewController: UIViewController {
     var user: FUser!
     var ref: DatabaseReference!
     var productArray = [Product]()
-    
+
+    let userDefaults = UserDefaults.standard
+
     //MARK: - IBOutlet
     @IBOutlet weak var newObjectButton: UIButton!
     @IBOutlet weak var infoObjectTextView: UITextView!
@@ -65,8 +67,6 @@ class WorkViewController: UIViewController {
     
     // MARK: - Configure Navigation
     func configureNavigation() {
-        //navigationController?.navigationBar.barTintColor = .darkGray
-        //navigationController?.navigationBar.barStyle = .default
         navigationItem.title = "Подрядчик"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.badge.xmark"), style: .plain, target: self, action: #selector(dismissToMainMenu))
         navigationItem.rightBarButtonItem?.tintColor = .black
@@ -83,11 +83,13 @@ class WorkViewController: UIViewController {
     @objc func dismissToMainMenu() {
         do {
             try Auth.auth().signOut()
-            performSegue(withIdentifier: "closeSeque", sender: self)
+            userDefaults.set(false, forKey: "isEmployee")
+            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+            let userViewController = mainStoryBoard.instantiateViewController(withIdentifier: "UserViewController") as! UserViewController
+            UIApplication.shared.windows.first?.rootViewController = userViewController
         } catch {
             
         }
-        print("dismissToMainMenu")
     }
 }
 
@@ -98,7 +100,6 @@ extension WorkViewController: UITableViewDelegate {
         if editingStyle == .delete {
             let product = productArray[indexPath.row]
             product.ref?.removeValue()
-            //productArray.remove(at: indexPath.row)
         }
         tableView.reloadData()
     }

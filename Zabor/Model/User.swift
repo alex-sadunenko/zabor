@@ -11,10 +11,8 @@ import FirebaseAuth
 
 struct FUser {
     let uid: String
-    //let phone: String
     
     init(user: User) {
         self.uid = user.uid
-        //self.phone = user.phone
     }
 }
