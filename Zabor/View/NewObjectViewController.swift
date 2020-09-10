@@ -23,6 +23,7 @@ class NewObjectViewController: UIViewController, UINavigationControllerDelegate 
     var longitude: Double?
     var latitude: Double?
     
+    //MARK: - Firebase var
     var user: FUser!
     var ref: DatabaseReference!
     var date: String!
@@ -211,7 +212,8 @@ extension NewObjectViewController: UIImagePickerControllerDelegate {
 extension NewObjectViewController {
     
     func saveData() {
-        let product = Product(userID: user.uid, description: infoObjectTextView.text, date: dateInstallation.text!, latitude: latitude!, longitude: longitude!, isCheck: false, ref: nil)
+        guard let latitude = latitude, let longitude = longitude else { return }
+        let product = Product(userID: user.uid, description: infoObjectTextView.text, date: dateInstallation.text!, latitude: latitude, longitude: longitude, isCheck: false, ref: nil)
         let taskRef = ref.child(date)
         taskRef.setValue(["userID": product.userID,
         "description": product.description,
@@ -219,6 +221,9 @@ extension NewObjectViewController {
         "latitude": product.latitude,
         "longitude": product.longitude,
         "isCheck": product.isCheck])
+        
+        navigationController?.popViewController(animated: true)
+
     }
 }
 

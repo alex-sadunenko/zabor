@@ -8,18 +8,55 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class WorkViewController: UIViewController {
 
+    //MARK: - Firebase var
+    var user: FUser!
+    var ref: DatabaseReference!
+    var productArray = [Product]()
+    
+    //MARK: - IBOutlet
     @IBOutlet weak var newObjectButton: UIButton!
     @IBOutlet weak var infoObjectTextView: UITextView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.tableFooterView = UIView()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = FUser(user: currentUser)
+        ref = Database.database().reference(withPath: "products")
+
         configureNavigation()
         configureAddButton()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        ref.observe(.value, with: { [weak self] (snapshot) in
+            var productArrayTemp = [Product]()
+            for item in snapshot.children {
+                let product = Product(snapshot: item as! DataSnapshot)
+                productArrayTemp.append(product)
+            }
+            
+            self?.productArray = productArrayTemp
+            self?.tableView.reloadData()
+        })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        ref.removeAllObservers() 
     }
     
     @IBAction func scanQrCodeTapped(_ sender: UIButton) {
@@ -27,7 +64,6 @@ class WorkViewController: UIViewController {
     }
     
     // MARK: - Configure Navigation
-
     func configureNavigation() {
         //navigationController?.navigationBar.barTintColor = .darkGray
         //navigationController?.navigationBar.barStyle = .default
@@ -37,7 +73,6 @@ class WorkViewController: UIViewController {
     }
     
     // MARK: - Configure Add Button
-    
     func configureAddButton() {
         newObjectButton.frame = CGRect(x: 100, y: 100, width: 60, height: 60)
         newObjectButton.layer.cornerRadius = 0.5 * newObjectButton.bounds.size.height
@@ -56,18 +91,34 @@ class WorkViewController: UIViewController {
     }
 }
 
+// MARK: - Table View Delegate
 extension WorkViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let product = productArray[indexPath.row]
+            product.ref?.removeValue()
+            //productArray.remove(at: indexPath.row)
+        }
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
+// MARK: - Table View Data Source
 extension WorkViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return productArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ObjectTableViewCell
+        cell.descriptionLabel.text = productArray[indexPath.row].description
+        cell.dateLabel.text = productArray[indexPath.row].date
         return cell
     }
     
