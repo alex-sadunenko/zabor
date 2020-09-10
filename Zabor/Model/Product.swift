@@ -15,7 +15,7 @@ struct Product {
     let date: String
     let latitude: Double
     let longitude: Double
-    let isCheck: Bool
+    var isCheck: Bool
     let ref: DatabaseReference?
     
     init(userID: String, description: String, date: String, latitude: Double, longitude: Double, isCheck: Bool, ref: DatabaseReference?) {

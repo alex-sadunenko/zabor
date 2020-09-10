@@ -8,6 +8,7 @@
 
 import UIKit
 import PDFKit
+import AVFoundation
 import FirebaseAuth
 import FirebaseDatabase
 
@@ -21,6 +22,10 @@ class CustomerViewController: UIViewController {
     //MARK: - PDF var
     var pdfView: PDFView!
     
+    //MARK: - QR var
+    var video = AVCaptureVideoPreviewLayer()
+    var session = AVCaptureSession()
+
     let userDefaults = UserDefaults.standard
     
     //MARK: - IBOutlet
@@ -36,8 +41,13 @@ class CustomerViewController: UIViewController {
     }
     
     @IBAction func printTapped(_ sender: UIButton) {
-        createUI()
-        createPDF()
+        
+        session = AVCaptureSession()
+        setupVideo()
+        startRunning()
+
+        //createUI()
+        //createPDF()
     }
     
     override func viewDidLoad() {
@@ -75,7 +85,7 @@ class CustomerViewController: UIViewController {
     @objc func dismissToMainMenu() {
         let activityViewController = UIActivityViewController(activityItems: [pdfView.document!.dataRepresentation()!], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
-        //view.willRemoveSubview(pdfView)
+        //view.layer.sublayers?.removeLast()
         
 //        // present the view controller
 //        self.present(activityViewController, animated: true, completion: nil)
@@ -101,15 +111,7 @@ class CustomerViewController: UIViewController {
 
 // MARK: - Table View Delegate
 extension CustomerViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            let product = productArray[indexPath.row]
-            product.ref?.removeValue()
-        }
-        tableView.reloadData()
-    }
-    
+        
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -126,6 +128,14 @@ extension CustomerViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! InventoryTableViewCell
         cell.descriptionLabel.text = productArray[indexPath.row].description
         cell.dateLabel.text = productArray[indexPath.row].date
+        
+        if productArray[indexPath.row].isCheck {
+            cell.accessoryType = .checkmark
+            cell.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+        } else {
+            cell.accessoryType = .none
+        }
+        
         return cell
     }
 }
@@ -157,5 +167,67 @@ extension CustomerViewController {
         let data = pdfCreator.create()
         pdfView.document = PDFDocument(data: data)
         pdfView.autoScales = true
+    }
+}
+
+//MARK: - Scan QR
+extension CustomerViewController: AVCaptureMetadataOutputObjectsDelegate {
+    
+    func setupVideo() {
+        
+        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else { return }
+        do {
+            let input = try AVCaptureDeviceInput(device: captureDevice)
+            session.addInput(input)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+        
+        let output = AVCaptureMetadataOutput()
+        session.addOutput(output)
+        
+        output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
+        
+        video = AVCaptureVideoPreviewLayer(session: session)
+        video.frame = view.layer.bounds
+    }
+    
+    func startRunning() {
+        view.layer.addSublayer(video)
+        session.startRunning()
+    }
+
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        guard metadataObjects.count > 0 else { return }
+        if let object = metadataObjects.first as? AVMetadataMachineReadableCodeObject {
+            if object.type == AVMetadataObject.ObjectType.qr {
+                
+                let alert = UIAlertController(title: "Объект", message: object.stringValue, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    let findObject = object.stringValue
+                    self.view.layer.sublayers?.removeLast()
+                    self.session.stopRunning()
+                    self.findInProductArray(product: findObject)
+                }
+                let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+                
+                alert.addAction(okAction)
+                alert.addAction(cancelAction)
+                
+                present(alert, animated: true)
+            }
+        }
+    }
+    
+    func findInProductArray(product: String?) {
+        guard let product = product else { return }
+        for item in 0..<productArray.count {
+            if product == productArray[item].description {
+                productArray[item].isCheck = true
+                tableView.reloadData()
+                break
+            }
+        }
     }
 }

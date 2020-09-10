@@ -10,7 +10,7 @@ import Foundation
 import PDFKit
 
 class PDFCreator: NSObject {
-    let defaultOffset: CGFloat = 20
+    let defaultOffset: CGFloat = 20 // was 20
     let tableDataHeaderTitles: [String]
     let tableDataItems: [TableDataItem]
     
@@ -58,6 +58,7 @@ extension Array {
 
 // Drawings
 extension PDFCreator {
+    
     func drawTableHeaderRect(drawContext: CGContext, pageRect: CGRect) {
         drawContext.saveGState()
         drawContext.setLineWidth(3.0)
@@ -85,6 +86,7 @@ extension PDFCreator {
         
         drawContext.restoreGState()
     }
+    
     func drawTableHeaderTitles(titles: [String], drawContext: CGContext, pageRect: CGRect) {
         // prepare title attributes
         let textFont = UIFont.systemFont(ofSize: 16.0, weight: .medium)
@@ -104,15 +106,16 @@ extension PDFCreator {
             let textRect = CGRect(x: tabX + defaultOffset,
                                   y: defaultOffset * 3 / 2,
                                   width: tabWidth,
-                                  height: defaultOffset * 2)
+                                  height: defaultOffset * 2) // was 2
             attributedTitle.draw(in: textRect)
         }
     }
+    
     func drawTableContentInnerBordersAndText(drawContext: CGContext, pageRect: CGRect, tableDataItems: [TableDataItem]) {
         drawContext.setLineWidth(1.0)
         drawContext.saveGState()
         
-        let defaultStartY = defaultOffset * 3
+        let defaultStartY = defaultOffset * 3 // was 3
         
         for elementIndex in 0..<tableDataItems.count {
             let yPosition = CGFloat(elementIndex) * defaultStartY + defaultStartY
@@ -132,7 +135,8 @@ extension PDFCreator {
                 switch titleIndex {
                 case 0: attributedText = NSAttributedString(string: tableDataItems[elementIndex].description, attributes: textAttributes)
                 case 1: attributedText = NSAttributedString(string: tableDataItems[elementIndex].date, attributes: textAttributes)
-                case 2: attributedText = NSAttributedString(string: String(format: "%.2f", tableDataItems[elementIndex].userID), attributes: textAttributes)
+                case 2: attributedText = NSAttributedString(string:  tableDataItems[elementIndex].userID, attributes: textAttributes)
+                //case 2: attributedText = NSAttributedString(string: String(format: "%.2f", tableDataItems[elementIndex].userID), attributes: textAttributes)
                 default:
                     break
                 }
@@ -140,7 +144,7 @@ extension PDFCreator {
                 let textRect = CGRect(x: tabX + defaultOffset,
                                       y: yPosition + defaultOffset,
                                       width: tabWidth,
-                                      height: defaultOffset * 3)
+                                      height: defaultOffset * 2) // was 3
                 attributedText.draw(in: textRect)
             }
             
