@@ -14,8 +14,16 @@ class UserViewController: UIViewController {
     let userDefaults = UserDefaults.standard
 
     // MARK: - IBOutlet
-    @IBOutlet weak var customerButton: UIButton!
-    @IBOutlet weak var employeeButton: UIButton!
+    @IBOutlet weak var customerButton: UIButton! {
+        didSet {
+            customerButton.setShadow()
+        }
+    }
+    @IBOutlet weak var employeeButton: UIButton! {
+        didSet {
+            customerButton.setShadow()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,50 +35,6 @@ class UserViewController: UIViewController {
         DispatchQueue.main.async {
             if Auth.auth().currentUser?.uid != nil {
                 self.showTargetVC()
-                
-//                //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                //
-//                //                var navController = UINavigationController()
-//                //                let isCustomer = self.userDefaults.bool(forKey: "isCustomer")
-//                //                if isCustomer {
-//                //                    let customerVC = storyboard.instantiateViewController(withIdentifier: "CustomerViewController") as! CustomerViewController
-//                //                    navController = UINavigationController(rootViewController: customerVC)
-//                //                } else {
-//                //                    let workVC = storyboard.instantiateViewController(withIdentifier: "WorkViewController") as! WorkViewController
-//                //                    navController = UINavigationController(rootViewController: workVC)
-//                //                }
-//                //
-//                //                navController.modalPresentationStyle = .overFullScreen
-//                //                self.present(navController, animated: true)
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//
-//                var navController = UINavigationController()
-//                let isCustomer = self.userDefaults.bool(forKey: "isCustomer")
-//                if isCustomer {
-//                    let customerVC = storyboard.instantiateViewController(withIdentifier: "CustomerViewController") as! CustomerViewController
-//                    let reportVC = storyboard.instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
-//                    let mapVC = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-//
-//                    let navCustomerController = UINavigationController(rootViewController: customerVC)
-//                    let navReportController = UINavigationController(rootViewController: reportVC)
-//                    let navMapController = UINavigationController(rootViewController: mapVC)
-//
-//                    let tabBarVC = storyboard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-//                    tabBarVC.setViewControllers([navCustomerController,navReportController,navMapController], animated: true)
-//                    tabBarVC.modalPresentationStyle = .overFullScreen
-//
-//                    //                    let story = UIStoryboard(name: "Main", bundle:nil)
-//                    //                    UIApplication.shared.windows.first?.rootViewController = vc
-//                    //                    UIApplication.shared.windows.first?.makeKeyAndVisible()
-//                    //
-//                    self.present(tabBarVC, animated: true)
-//
-//                } else {
-//                    let workVC = storyboard.instantiateViewController(withIdentifier: "WorkViewController") as! WorkViewController
-//                    navController = UINavigationController(rootViewController: workVC)
-//                    navController.modalPresentationStyle = .overFullScreen
-//                    self.present(navController, animated: true)
-//                }
             }
         }
     }
@@ -115,5 +79,7 @@ class UserViewController: UIViewController {
         userDefaults.set(true, forKey: "isEmployee")
 
         self.present(authorizationVC, animated: true)
-    }}
+    }
+    
+}
 
