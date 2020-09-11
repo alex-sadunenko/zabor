@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		064DF175F54DD5E9C19D1CF2 /* Pods_Zabor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A7DB4DD7AD5E3768ABF4B3 /* Pods_Zabor.framework */; };
+		631DD04E250BFE1300AE34C7 /* CellReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631DD04D250BFE1300AE34C7 /* CellReportTableViewCell.swift */; };
 		634B758A2508E34A00045F42 /* NewObjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B75892508E34A00045F42 /* NewObjectViewController.swift */; };
 		634B758C2508E44C00045F42 /* ObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B758B2508E44C00045F42 /* ObjectTableViewCell.swift */; };
 		634B75932509596F00045F42 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B75922509596F00045F42 /* Product.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		631DD04D250BFE1300AE34C7 /* CellReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellReportTableViewCell.swift; sourceTree = "<group>"; };
 		634B75892508E34A00045F42 /* NewObjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewObjectViewController.swift; sourceTree = "<group>"; };
 		634B758B2508E44C00045F42 /* ObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewCell.swift; sourceTree = "<group>"; };
 		634B75922509596F00045F42 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				634B759A250A1E7C00045F42 /* ReportViewController.swift */,
 				634B759C250A1E9100045F42 /* MapViewController.swift */,
 				634B7598250A156900045F42 /* TabBarViewController.swift */,
+				631DD04D250BFE1300AE34C7 /* CellReportTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				634B759B250A1E7C00045F42 /* ReportViewController.swift in Sources */,
 				634B758C2508E44C00045F42 /* ObjectTableViewCell.swift in Sources */,
 				634B759F250A623900045F42 /* InventoryTableViewCell.swift in Sources */,
+				631DD04E250BFE1300AE34C7 /* CellReportTableViewCell.swift in Sources */,
 				634B7597250A042E00045F42 /* CustomerViewController.swift in Sources */,
 				634B75A1250A887500045F42 /* TableDataItem.swift in Sources */,
 				63A7799C25061AF8008260BB /* AuthorizationViewController.swift in Sources */,

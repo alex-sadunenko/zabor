@@ -9,11 +9,19 @@
 import UIKit
 import MapKit
 import FirebaseAuth
+import FirebaseDatabase
 
 class MapViewController: UIViewController {
 
+    //MARK: - Firebase var
+    var user: FUser!
+    var ref: DatabaseReference!
+    var productArray = [Product]()
+
+    //MARK: - IBOutlet
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
+            mapView.clearsContextBeforeDrawing = true
             mapView.delegate = self
         }
     }
@@ -23,8 +31,34 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addAnnotation()
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = FUser(user: currentUser)
+        ref = Database.database().reference(withPath: "products")
+
         configureNavigation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        ref.observe(.value, with: { [weak self] (snapshot) in
+            var productArrayTemp = [Product]()
+            for item in snapshot.children {
+                let product = Product(snapshot: item as! DataSnapshot)
+                productArrayTemp.append(product)
+            }
+            
+            self?.productArray = productArrayTemp
+            self?.addAnnotation()
+        })
+        
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        ref.removeAllObservers()
     }
 
 }
@@ -33,19 +67,20 @@ class MapViewController: UIViewController {
 extension MapViewController {
     
     func configureNavigation() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "lock.circle"), style: .plain, target: self, action: #selector(dismissToMainMenu))
-        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "LogOutFullImage"), style: .plain, target: self, action: #selector(dismissToMainMenu))
+        navigationItem.rightBarButtonItem?.tintColor = .darkGray
     }
     
     @objc func dismissToMainMenu() {
         let alert = UIAlertController(title: "Log out", message: "Вы действительно хотите разлогиниться?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             do {
-//                try Auth.auth().signOut()
-//                self.userDefaults.set(false, forKey: "isCustomer")
-//                let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-//                let userViewController = mainStoryBoard.instantiateViewController(withIdentifier: "UserViewController") as! UserViewController
-//                UIApplication.shared.windows.first?.rootViewController = userViewController
+                try Auth.auth().signOut()
+                self.userDefaults.set(false, forKey: "isCustomer")
+                self.userDefaults.set(false, forKey: "isEmployee")
+                let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                let userViewController = mainStoryBoard.instantiateViewController(withIdentifier: "UserViewController") as! UserViewController
+                UIApplication.shared.windows.first?.rootViewController = userViewController
             } catch {
                 
             }
@@ -64,12 +99,17 @@ extension MapViewController {
 extension MapViewController: MKMapViewDelegate {
     
     func addAnnotation() {
-        let annotation = MKPointAnnotation()
-        annotation.title = "Урна"
-        annotation.subtitle = "02.23.2020"
-        
-        annotation.coordinate = CLLocationCoordinate2D(latitude: 48.480444308953864, longitude: 35.07086296581906)
-        mapView.showAnnotations([annotation], animated: true)
+        var annotationArray = [MKPointAnnotation]()
+        var annotation = MKPointAnnotation()
+        for item in 0..<productArray.count {
+            annotation = MKPointAnnotation()
+            annotation.title = productArray[item].description
+            annotation.subtitle = productArray[item].date
+            annotation.coordinate = CLLocationCoordinate2D(latitude: productArray[item].latitude, longitude: productArray[item].longitude)
+            annotation.accessibilityLabel = "\(productArray[item].isCheck)"
+            annotationArray.append(annotation)
+        }
+        mapView.showAnnotations(annotationArray, animated: true)
 
     }
     
@@ -81,7 +121,13 @@ extension MapViewController: MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             annotationView?.canShowCallout = true
-            annotationView?.pinTintColor = .green
+            if let annotationPoint = annotation as? MKPointAnnotation {
+                if annotationPoint.accessibilityLabel == "true" {
+                    annotationView?.pinTintColor = .green
+                } else {
+                    annotationView?.pinTintColor = .orange
+                }
+            }
         }
         
         return annotationView

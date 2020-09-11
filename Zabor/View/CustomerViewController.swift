@@ -71,6 +71,13 @@ class CustomerViewController: UIViewController {
             self?.tableView.reloadData()
         })
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        ref.removeAllObservers()
+    }
+
 }
 
 // MARK: - Configure Navigation and Activity
@@ -88,21 +95,15 @@ extension CustomerViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareFilePDF))
         navigationItem.rightBarButtonItem?.tintColor = .black
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "x.circle"), style: .plain, target: self, action: #selector(closeFilePDF))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply.circle"), style: .plain, target: self, action: #selector(closeFilePDF))
         navigationItem.leftBarButtonItem?.tintColor = .black
 
     }
     
     @objc func closeFilePDF() {
         
-        guard  let sublayers = view.layer.sublayers else { return }
-        
-        for layer in sublayers {
-            if (layer.delegate!.description).contains("PDFView") {
-                layer.removeFromSuperlayer()
-            }
-        }
-        //view.layer.sublayers?.removeLast()
+        pdfView.isHidden = true
+        pdfView = nil
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "printer"), style: .plain, target: self, action: #selector(self.createFilePDF))
         navigationItem.rightBarButtonItem?.tintColor = .black
@@ -116,9 +117,7 @@ extension CustomerViewController {
         let activityViewController = UIActivityViewController(activityItems: [pdfView.document!.dataRepresentation()!], applicationActivities: nil)
         activityViewController.completionWithItemsHandler = { activity, success, items, error in
             if success {
-                self.view.layer.sublayers?.removeLast()
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "printer"), style: .plain, target: self, action: #selector(self.createFilePDF))
-                self.navigationItem.rightBarButtonItem?.tintColor = .black
+                self.closeFilePDF()
             }
         }
         

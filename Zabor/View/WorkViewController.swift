@@ -68,8 +68,8 @@ class WorkViewController: UIViewController {
     // MARK: - Configure Navigation
     func configureNavigation() {
         navigationItem.title = "Подрядчик"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.badge.xmark"), style: .plain, target: self, action: #selector(dismissToMainMenu))
-        navigationItem.rightBarButtonItem?.tintColor = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "LogOutFullImage"), style: .plain, target: self, action: #selector(dismissToMainMenu))
+        navigationItem.rightBarButtonItem?.tintColor = .darkGray
     }
     
     // MARK: - Configure Add Button
@@ -81,15 +81,26 @@ class WorkViewController: UIViewController {
     }
     
     @objc func dismissToMainMenu() {
-        do {
-            try Auth.auth().signOut()
-            userDefaults.set(false, forKey: "isEmployee")
-            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            let userViewController = mainStoryBoard.instantiateViewController(withIdentifier: "UserViewController") as! UserViewController
-            UIApplication.shared.windows.first?.rootViewController = userViewController
-        } catch {
-            
+        let alert = UIAlertController(title: "Log out", message: "Вы действительно хотите разлогиниться?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            do {
+                try Auth.auth().signOut()
+                self.userDefaults.set(false, forKey: "isCustomer")
+                self.userDefaults.set(false, forKey: "isEmployee")
+                let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+                let userViewController = mainStoryBoard.instantiateViewController(withIdentifier: "UserViewController") as! UserViewController
+                UIApplication.shared.windows.first?.rootViewController = userViewController
+            } catch {
+                
+            }
         }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+ 
     }
 }
 
