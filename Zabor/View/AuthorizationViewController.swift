@@ -15,7 +15,12 @@ class AuthorizationViewController: UIViewController {
     
     // MARK: - IBOutlet
     @IBOutlet weak var phoneNumber: UITextField!
-        
+    @IBOutlet weak var fetchCodeButton: UIButton! {
+        didSet {
+            fetchCodeButton.setShadow()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainPageLogo" translatesAutoresizingMaskIntoConstraints="NO" id="CH0-jd-6dM">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Texture_matall" translatesAutoresizingMaskIntoConstraints="NO" id="CH0-jd-6dM">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoImage" translatesAutoresizingMaskIntoConstraints="NO" id="rq1-82-Iv1">
@@ -69,11 +69,6 @@
                             <constraint firstItem="rq1-82-Iv1" firstAttribute="centerY" secondItem="qhj-BS-ihR" secondAttribute="centerY" id="uii-ep-gP1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TEz-zR-8sX"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="rq1-82-Iv1"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="customerButton" destination="8xB-pm-GYo" id="DMC-Lb-W5i"/>
@@ -149,6 +144,7 @@
                         <viewLayoutGuide key="safeArea" id="GPo-eg-ywi"/>
                     </view>
                     <connections>
+                        <outlet property="fetchCodeButton" destination="LEn-49-z20" id="p5g-b8-l5m"/>
                         <outlet property="phoneNumber" destination="uVP-tZ-wik" id="Dea-qA-7fY"/>
                     </connections>
                 </viewController>
@@ -244,9 +240,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Texture_matall" translatesAutoresizingMaskIntoConstraints="NO" id="eRf-45-b6D">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eu-VA-Kt7">
                                 <rect key="frame" x="177" y="779.5" width="60" height="60"/>
                                 <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -332,7 +325,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7bZ-RQ-nBQ" firstAttribute="top" secondItem="9eu-VA-Kt7" secondAttribute="bottom" constant="2" id="721-0n-fIz"/>
                             <constraint firstItem="lqF-yH-sX7" firstAttribute="width" secondItem="9eu-VA-Kt7" secondAttribute="height" multiplier="0.7:1" id="7tR-Q2-b2a"/>
@@ -344,11 +337,7 @@
                             <constraint firstItem="lqF-yH-sX7" firstAttribute="centerY" secondItem="9eu-VA-Kt7" secondAttribute="centerY" id="YLX-fF-QUw"/>
                             <constraint firstItem="o49-QO-NHO" firstAttribute="leading" secondItem="Elp-Zv-T23" secondAttribute="leading" id="YR3-bH-C6u"/>
                             <constraint firstItem="9eu-VA-Kt7" firstAttribute="top" secondItem="o49-QO-NHO" secondAttribute="bottom" constant="10" id="c1f-Ra-ZEv"/>
-                            <constraint firstAttribute="bottom" secondItem="eRf-45-b6D" secondAttribute="bottom" id="kvz-GS-vLj"/>
-                            <constraint firstItem="eRf-45-b6D" firstAttribute="trailing" secondItem="Elp-Zv-T23" secondAttribute="trailing" id="ttS-i1-LU3"/>
-                            <constraint firstItem="eRf-45-b6D" firstAttribute="leading" secondItem="Elp-Zv-T23" secondAttribute="leading" id="uOV-9W-xBC"/>
                             <constraint firstItem="o49-QO-NHO" firstAttribute="top" secondItem="Elp-Zv-T23" secondAttribute="top" id="uPT-bp-3uq"/>
-                            <constraint firstItem="eRf-45-b6D" firstAttribute="top" secondItem="f3G-cs-YDh" secondAttribute="top" id="v5v-5C-F9T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Elp-Zv-T23"/>
                     </view>
@@ -492,14 +481,28 @@
                     <view key="view" contentMode="scaleToFill" id="1DA-MY-nd5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x81-VQ-SyS">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="x81-VQ-SyS" firstAttribute="bottom" secondItem="Nmu-R1-UN5" secondAttribute="bottom" id="Bqo-1r-rlQ"/>
+                            <constraint firstItem="x81-VQ-SyS" firstAttribute="trailing" secondItem="Nmu-R1-UN5" secondAttribute="trailing" id="HOB-ET-Xsf"/>
+                            <constraint firstItem="x81-VQ-SyS" firstAttribute="top" secondItem="Nmu-R1-UN5" secondAttribute="top" id="PdU-Kk-tyK"/>
+                            <constraint firstItem="x81-VQ-SyS" firstAttribute="leading" secondItem="Nmu-R1-UN5" secondAttribute="leading" id="kae-vB-lMH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Nmu-R1-UN5"/>
                     </view>
                     <navigationItem key="navigationItem" title="Карта" id="2wl-QX-G0d"/>
+                    <connections>
+                        <outlet property="mapView" destination="x81-VQ-SyS" id="c70-ld-j66"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qx2-Xw-EmT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3541" y="1491"/>
+            <point key="canvasLocation" x="3540.579710144928" y="1490.625"/>
         </scene>
         <!--New Object View Controller-->
         <scene sceneID="kD9-jM-9ks">
@@ -695,8 +698,19 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DcJ-xr-mFz">
                                 <rect key="frame" x="10" y="814" width="394" height="48"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyz-SC-puC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYX-oi-2Ms">
                                         <rect key="frame" x="0.0" y="0.0" width="192" height="48"/>
+                                        <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Отменить">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelTapped:" destination="bOS-t1-uVJ" eventType="touchUpInside" id="tgC-uo-4Hc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wyz-SC-puC">
+                                        <rect key="frame" x="202" y="0.0" width="192" height="48"/>
                                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Сохранить">
@@ -704,17 +718,6 @@
                                         </state>
                                         <connections>
                                             <action selector="saveTapped:" destination="bOS-t1-uVJ" eventType="touchUpInside" id="Wju-FD-kGx"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYX-oi-2Ms">
-                                        <rect key="frame" x="202" y="0.0" width="192" height="48"/>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Отменить">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelTapped:" destination="bOS-t1-uVJ" eventType="touchUpInside" id="tgC-uo-4Hc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -741,6 +744,7 @@
                         <outlet property="buttonFours" destination="fb9-GX-lxQ" id="0xN-Fa-kzC"/>
                         <outlet property="buttonSecond" destination="Je2-px-oce" id="8Tc-rZ-GzA"/>
                         <outlet property="buttonThird" destination="UKw-hv-DwL" id="1ih-He-uwF"/>
+                        <outlet property="cancelButton" destination="QYX-oi-2Ms" id="PQN-AB-gPZ"/>
                         <outlet property="dateInstallation" destination="nib-uz-kRg" id="hs0-Hw-Ypc"/>
                         <outlet property="infoObjectTextView" destination="TIf-DS-VhD" id="f5m-OT-eRe"/>
                         <outlet property="latitudeLabel" destination="Opp-k9-PPc" id="YQE-6w-p0a"/>
@@ -749,6 +753,7 @@
                         <outlet property="photoFours" destination="o8V-FS-cgg" id="CjT-dV-qKE"/>
                         <outlet property="photoSecond" destination="b5J-yh-5wc" id="xVC-V2-o6M"/>
                         <outlet property="photoThird" destination="mHH-2t-Ka5" id="1Og-2d-sfn"/>
+                        <outlet property="saveButton" destination="Wyz-SC-puC" id="YWc-oz-Phz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZY-6S-SKN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -767,9 +772,9 @@
                         <color key="selectedImageTintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
+                        <segue destination="TnG-xs-sTU" kind="relationship" relationship="viewControllers" id="8WK-o5-yj5"/>
                         <segue destination="cNa-xD-JY8" kind="relationship" relationship="viewControllers" id="Vlb-xN-9hn"/>
                         <segue destination="MGr-ry-rg4" kind="relationship" relationship="viewControllers" id="7jS-Ef-Jnk"/>
-                        <segue destination="TnG-xs-sTU" kind="relationship" relationship="viewControllers" id="8WK-o5-yj5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBt-Jh-NHg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -837,7 +842,6 @@
     <resources>
         <image name="CameraPlusImage" width="120" height="114"/>
         <image name="LogoImage" width="256" height="103"/>
-        <image name="MainPageLogo" width="414" height="896"/>
         <image name="PlusImage" width="52" height="52"/>
         <image name="Texture_matall" width="414" height="896"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>

@@ -20,6 +20,7 @@
 		634B75A1250A887500045F42 /* TableDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B75A0250A887500045F42 /* TableDataItem.swift */; };
 		634B75A6250A8CB600045F42 /* PDFCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B75A5250A8CB600045F42 /* PDFCreator.swift */; };
 		634B75A8250AAC1400045F42 /* ShadowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634B75A7250AAC1400045F42 /* ShadowButton.swift */; };
+		634B75AA250B66CD00045F42 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634B75A9250B66CD00045F42 /* MapKit.framework */; };
 		63A779832505EFD1008260BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779822505EFD1008260BB /* AppDelegate.swift */; };
 		63A779852505EFD1008260BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779842505EFD1008260BB /* SceneDelegate.swift */; };
 		63A779872505EFD1008260BB /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A779862505EFD1008260BB /* UserViewController.swift */; };
@@ -46,6 +47,7 @@
 		634B75A0250A887500045F42 /* TableDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataItem.swift; sourceTree = "<group>"; };
 		634B75A5250A8CB600045F42 /* PDFCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PDFCreator.swift; path = ../PDFCreator.swift; sourceTree = "<group>"; };
 		634B75A7250AAC1400045F42 /* ShadowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowButton.swift; sourceTree = "<group>"; };
+		634B75A9250B66CD00045F42 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		63A7797F2505EFD1008260BB /* Zabor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zabor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63A779822505EFD1008260BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63A779842505EFD1008260BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634B75AA250B66CD00045F42 /* MapKit.framework in Frameworks */,
 				064DF175F54DD5E9C19D1CF2 /* Pods_Zabor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +164,7 @@
 		73665CAE5CF3D25DDBCED49B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				634B75A9250B66CD00045F42 /* MapKit.framework */,
 				D7A7DB4DD7AD5E3768ABF4B3 /* Pods_Zabor.framework */,
 			);
 			name = Frameworks;

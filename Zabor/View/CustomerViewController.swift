@@ -40,14 +40,11 @@ class CustomerViewController: UIViewController {
         }
     }
     
+    //MARK: - IBAction
     @IBAction func printTapped(_ sender: UIButton) {
-        
         session = AVCaptureSession()
         setupVideo()
         startRunning()
-
-        //createUI()
-        //createPDF()
     }
     
     override func viewDidLoad() {
@@ -74,39 +71,60 @@ class CustomerViewController: UIViewController {
             self?.tableView.reloadData()
         })
     }
-    
-    // MARK: - Configure Navigation
+}
+
+// MARK: - Configure Navigation and Activity
+extension CustomerViewController {
+
     func configureNavigation() {
-        navigationItem.title = "Инвентаризация"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.badge.xmark"), style: .plain, target: self, action: #selector(dismissToMainMenu))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "printer"), style: .plain, target: self, action: #selector(createFilePDF))
         navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
-    @objc func dismissToMainMenu() {
-        let activityViewController = UIActivityViewController(activityItems: [pdfView.document!.dataRepresentation()!], applicationActivities: nil)
-        present(activityViewController, animated: true, completion: nil)
-        //view.layer.sublayers?.removeLast()
+    @objc func createFilePDF() {
+        createUI()
+        createPDF()
         
-//        // present the view controller
-//        self.present(activityViewController, animated: true, completion: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareFilePDF))
+        navigationItem.rightBarButtonItem?.tintColor = .black
         
-//        do {
-//            try Auth.auth().signOut()
-//            performSegue(withIdentifier: "closeSeque", sender: self)
-//        } catch {
-//
-//        }
-//        print("dismissToMainMenu")
-//        do {
-//            try Auth.auth().signOut()
-//            userDefaults.set(false, forKey: "isCustomer")
-//            let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-//            let userViewController = mainStoryBoard.instantiateViewController(withIdentifier: "UserViewController") as! UserViewController
-//            UIApplication.shared.windows.first?.rootViewController = userViewController
-//        } catch {
-//
-//        }
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "x.circle"), style: .plain, target: self, action: #selector(closeFilePDF))
+        navigationItem.leftBarButtonItem?.tintColor = .black
+
     }
+    
+    @objc func closeFilePDF() {
+        
+        guard  let sublayers = view.layer.sublayers else { return }
+        
+        for layer in sublayers {
+            if (layer.delegate!.description).contains("PDFView") {
+                layer.removeFromSuperlayer()
+            }
+        }
+        //view.layer.sublayers?.removeLast()
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "printer"), style: .plain, target: self, action: #selector(self.createFilePDF))
+        navigationItem.rightBarButtonItem?.tintColor = .black
+
+        navigationItem.leftBarButtonItem = nil
+        
+    }
+
+    @objc func shareFilePDF() {
+        
+        let activityViewController = UIActivityViewController(activityItems: [pdfView.document!.dataRepresentation()!], applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = { activity, success, items, error in
+            if success {
+                self.view.layer.sublayers?.removeLast()
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "printer"), style: .plain, target: self, action: #selector(self.createFilePDF))
+                self.navigationItem.rightBarButtonItem?.tintColor = .black
+            }
+        }
+        
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - Table View Delegate
@@ -132,8 +150,10 @@ extension CustomerViewController: UITableViewDataSource {
         if productArray[indexPath.row].isCheck {
             cell.accessoryType = .checkmark
             cell.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+            productArray[indexPath.row].ref?.updateChildValues(["isCheck": true])
         } else {
             cell.accessoryType = .none
+            cell.backgroundColor = .none
         }
         
         return cell

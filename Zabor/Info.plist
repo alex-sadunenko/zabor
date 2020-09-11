@@ -31,6 +31,8 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MKDirectionsApplicationSupportedModes</key>
+	<array/>
 	<key>NSCameraUsageDescription</key>
 	<string>This App need to use your camera</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

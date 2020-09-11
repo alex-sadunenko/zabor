@@ -51,6 +51,16 @@ class NewObjectViewController: UIViewController, UINavigationControllerDelegate 
             formatter.dateFormat = "yyyyMMddHHmmss"
             date = formatter.string(from: Date() as Date)}
     }
+    @IBOutlet weak var saveButton: UIButton! {
+        didSet {
+            saveButton.setShadow()
+        }
+    }
+    @IBOutlet weak var cancelButton: UIButton! {
+        didSet {
+            cancelButton.setShadow()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

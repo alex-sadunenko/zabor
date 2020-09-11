@@ -16,7 +16,11 @@ class CodeValidationViewController: UIViewController {
 
     // MARK: - IBOutlet
     @IBOutlet weak var codeTextView: UITextView!
-    @IBOutlet weak var checkCodeButton: UIButton!
+    @IBOutlet weak var checkCodeButton: UIButton! {
+        didSet {
+            checkCodeButton.setShadow()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
