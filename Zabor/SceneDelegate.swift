@@ -23,15 +23,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
             let isCustomer = UserDefaults.standard.bool(forKey: "isCustomer")
             let isEmployee = UserDefaults.standard.bool(forKey: "isEmployee")
-//            if isCustomer {
+            if isCustomer {
                 let tabBarVC = mainStoryBoard.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                 window?.rootViewController = tabBarVC
-//            } else if isEmployee {
-//                let workVC = mainStoryBoard.instantiateViewController(withIdentifier: "WorkViewController") as! WorkViewController
-//                var navController = UINavigationController()
-//                navController = UINavigationController(rootViewController: workVC)
-//                window?.rootViewController = navController
-//            }
+            } else if isEmployee {
+                let workVC = mainStoryBoard.instantiateViewController(withIdentifier: "WorkViewController") as! WorkViewController
+                var navController = UINavigationController()
+                navController = UINavigationController(rootViewController: workVC)
+                window?.rootViewController = navController
+            }
         }
         
         guard let _ = (scene as? UIWindowScene) else { return }
