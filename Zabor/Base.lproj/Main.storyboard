@@ -466,8 +466,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-6L-pUo">
+                                <rect key="frame" x="0.0" y="88" width="414" height="32"/>
+                                <segments>
+                                    <segment title="По дате"/>
+                                    <segment title="По объектам"/>
+                                    <segment title="По учету"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentAction:" destination="Yrn-MO-v7y" eventType="valueChanged" id="8kK-0O-UOw"/>
+                                </connections>
+                            </segmentedControl>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="kMb-HQ-HTt">
+                                <rect key="frame" x="0.0" y="127" width="414" height="31"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проинвентаризирован" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1p-rz-PWj">
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ow0-3m-8Lu">
+                                        <rect key="frame" x="365" y="0.0" width="51" height="31"/>
+                                        <color key="onTintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="switchAction:" destination="Yrn-MO-v7y" eventType="valueChanged" id="Xfp-wb-OKO"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wcF-Zb-fkw">
-                                <rect key="frame" x="0.0" y="177" width="414" height="636"/>
+                                <rect key="frame" x="0.0" y="166" width="414" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="72" id="D1g-m0-9hX" customClass="CellReportTableViewCell" customModule="Zabor" customModuleProvider="target">
@@ -525,60 +554,25 @@
                                     <outlet property="delegate" destination="Yrn-MO-v7y" id="yn7-ed-h5R"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите дату" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SK3-dq-7em">
-                                <rect key="frame" x="20" y="96" width="374" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uEc-6L-pUo">
-                                <rect key="frame" x="0.0" y="138" width="414" height="32"/>
-                                <segments>
-                                    <segment title="По дате"/>
-                                    <segment title="По объектам"/>
-                                    <segment title="По учету"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmentAction:" destination="Yrn-MO-v7y" eventType="valueChanged" id="8kK-0O-UOw"/>
-                                </connections>
-                            </segmentedControl>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ow0-3m-8Lu">
-                                <rect key="frame" x="343" y="97" width="51" height="31"/>
-                                <connections>
-                                    <action selector="switchAction:" destination="Yrn-MO-v7y" eventType="valueChanged" id="Xfp-wb-OKO"/>
-                                </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Проинвентаризирован" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1p-rz-PWj">
-                                <rect key="frame" x="151.5" y="102.5" width="183.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="uEc-6L-pUo" firstAttribute="trailing" secondItem="Fwk-xZ-NBt" secondAttribute="trailing" id="7fW-0K-ldY"/>
-                            <constraint firstItem="uEc-6L-pUo" firstAttribute="top" secondItem="SK3-dq-7em" secondAttribute="bottom" constant="8" id="8WI-8u-E2m"/>
-                            <constraint firstItem="uEc-6L-pUo" firstAttribute="leading" secondItem="Fwk-xZ-NBt" secondAttribute="leading" id="8eN-Lx-8Qq"/>
-                            <constraint firstItem="SK3-dq-7em" firstAttribute="top" secondItem="Fwk-xZ-NBt" secondAttribute="top" constant="8" id="D4J-rp-SCP"/>
-                            <constraint firstItem="Fwk-xZ-NBt" firstAttribute="trailing" secondItem="SK3-dq-7em" secondAttribute="trailing" constant="20" id="G7o-Sa-f2Q"/>
-                            <constraint firstItem="wcF-Zb-fkw" firstAttribute="leading" secondItem="Fwk-xZ-NBt" secondAttribute="leading" id="Hl9-Gy-Izv"/>
-                            <constraint firstItem="Fwk-xZ-NBt" firstAttribute="trailing" secondItem="uEc-6L-pUo" secondAttribute="trailing" id="KwL-ai-usz"/>
-                            <constraint firstItem="wcF-Zb-fkw" firstAttribute="top" secondItem="uEc-6L-pUo" secondAttribute="bottom" constant="8" id="Xwu-Jq-oLC"/>
-                            <constraint firstItem="wcF-Zb-fkw" firstAttribute="bottom" secondItem="Fwk-xZ-NBt" secondAttribute="bottom" id="YVf-K6-jxm"/>
-                            <constraint firstItem="uEc-6L-pUo" firstAttribute="top" secondItem="B1p-rz-PWj" secondAttribute="bottom" constant="15" id="YaR-0J-CoV"/>
-                            <constraint firstItem="SK3-dq-7em" firstAttribute="leading" secondItem="Fwk-xZ-NBt" secondAttribute="leading" constant="20" id="gee-JS-wbT"/>
-                            <constraint firstItem="wcF-Zb-fkw" firstAttribute="trailing" secondItem="Fwk-xZ-NBt" secondAttribute="trailing" id="h0t-Jt-fcz"/>
-                            <constraint firstItem="Fwk-xZ-NBt" firstAttribute="trailing" secondItem="Ow0-3m-8Lu" secondAttribute="trailing" constant="22" id="ifw-YD-T7U"/>
-                            <constraint firstItem="uEc-6L-pUo" firstAttribute="leading" secondItem="Fwk-xZ-NBt" secondAttribute="leading" id="mdG-gz-gju"/>
-                            <constraint firstItem="uEc-6L-pUo" firstAttribute="top" secondItem="Ow0-3m-8Lu" secondAttribute="bottom" constant="10" id="p5h-W4-sNA"/>
-                            <constraint firstItem="Ow0-3m-8Lu" firstAttribute="leading" secondItem="B1p-rz-PWj" secondAttribute="trailing" constant="8" id="z2v-fA-gnv"/>
+                            <constraint firstItem="kMb-HQ-HTt" firstAttribute="leading" secondItem="Fwk-xZ-NBt" secondAttribute="leading" id="7RU-Vb-xpN"/>
+                            <constraint firstItem="uEc-6L-pUo" firstAttribute="trailing" secondItem="Fwk-xZ-NBt" secondAttribute="trailing" id="Ji9-mu-eMX"/>
+                            <constraint firstItem="kMb-HQ-HTt" firstAttribute="top" secondItem="uEc-6L-pUo" secondAttribute="bottom" constant="8" id="Kml-PH-NUH"/>
+                            <constraint firstItem="wcF-Zb-fkw" firstAttribute="bottom" secondItem="Fwk-xZ-NBt" secondAttribute="bottom" id="MPM-GI-KKG"/>
+                            <constraint firstItem="Fwk-xZ-NBt" firstAttribute="trailing" secondItem="kMb-HQ-HTt" secondAttribute="trailing" id="Vnz-4q-Fpc"/>
+                            <constraint firstItem="wcF-Zb-fkw" firstAttribute="leading" secondItem="Fwk-xZ-NBt" secondAttribute="leading" id="b7a-5t-G6Z"/>
+                            <constraint firstItem="wcF-Zb-fkw" firstAttribute="top" secondItem="kMb-HQ-HTt" secondAttribute="bottom" constant="8" id="gUc-3a-thQ"/>
+                            <constraint firstItem="wcF-Zb-fkw" firstAttribute="trailing" secondItem="Fwk-xZ-NBt" secondAttribute="trailing" id="mdJ-mQ-UJu"/>
+                            <constraint firstItem="uEc-6L-pUo" firstAttribute="leading" secondItem="Fwk-xZ-NBt" secondAttribute="leading" id="nph-g1-RX2"/>
+                            <constraint firstItem="uEc-6L-pUo" firstAttribute="top" secondItem="Fwk-xZ-NBt" secondAttribute="top" id="tei-d0-ftz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fwk-xZ-NBt"/>
                     </view>
                     <navigationItem key="navigationItem" title="Аналитика" id="E1A-QE-SPR"/>
                     <connections>
                         <outlet property="checkLabel" destination="B1p-rz-PWj" id="dth-if-JeQ"/>
-                        <outlet property="dateTextField" destination="SK3-dq-7em" id="kPm-lq-VeB"/>
                         <outlet property="segmentControl" destination="uEc-6L-pUo" id="hI9-Qn-P8m"/>
                         <outlet property="switchControl" destination="Ow0-3m-8Lu" id="q87-h8-Gbw"/>
                         <outlet property="tableView" destination="wcF-Zb-fkw" id="zEC-sK-0OQ"/>
